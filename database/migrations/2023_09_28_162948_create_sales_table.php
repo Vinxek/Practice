@@ -14,7 +14,7 @@ return new class extends Migration
 			$table->bigInteger('inventory_id')->unsigned();
 			$table->bigInteger('product_id')->unsigned();
 			$table->bigInteger('sale_amount')->unsigned();
-			$table->enum('TransactionStatus', ['completed', 'Pending', 'Cancelled'])->nullable();
+			$table->enum('TransactionStatus', ['Completed', 'Pending', 'Cancelled'])->nullable();
             $table->timestamps();
 			$table->softDeletes();
 

@@ -11,7 +11,8 @@ class Product extends Model
 {
     use HasFactory, SoftDeletes ;
 
-	protected $fillable = [   // <- A protected variable called $fillable equals to an array with all the column names on the database
+	protected $fillable = [
+		'name',  // <- A protected variable called $fillable equals to an array with all the column names on the database
 		'type',
 		'price',
 		'size'
