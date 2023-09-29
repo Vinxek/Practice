@@ -25,6 +25,10 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+	public function setPasswordAttribute($value){
+		$this->attributes['password'] = bcrypt($value);
+	}
+
 
     protected $casts = [
         'email_verified_at' => 'datetime',

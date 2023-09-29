@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use NumberFormatter;
 
 class Product extends Model
 {
@@ -17,6 +19,23 @@ class Product extends Model
 		'price',
 		'size'
 	];
+
+
+	public function getPriceAttribute($value)
+	{
+    $formatter = new NumberFormatter('es-CO', NumberFormatter::CURRENCY);
+    return $formatter->formatCurrency($value / 100, 'COP');
+	}
+
+	public function inventory()
+	{
+		return $this->hasOne(Inventory::class, 'product_id', 'id');
+	}
+
+	public function sales()
+	{
+		return $this->hasMany(Sale::class, 'product_id','id');
+	}
 
 
 }
